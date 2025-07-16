@@ -12,16 +12,17 @@ import {
 } from '@mui/material';
 import { orange } from '../../constants/color';
 
-// Shimmer animation keyframes
-const shimmerStyles = {
-  '@keyframes shimmer': {
-    '0%': {
-      backgroundPosition: '-200px 0',
-    },
-    '100%': {
-      backgroundPosition: 'calc(200px + 100%) 0',
-    },
+// Shimmer animation keyframes - properly defined for Material-UI
+const shimmerKeyframes = {
+  '0%': {
+    backgroundPosition: '-200px 0',
   },
+  '100%': {
+    backgroundPosition: 'calc(200px + 100%) 0',
+  },
+};
+
+const shimmerStyles = {
   shimmerBase: {
     background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
     backgroundSize: '200px 100%',
@@ -95,9 +96,26 @@ export const ChatListShimmer = ({ count = 8 }) => (
   </Stack>
 );
 
+// Title Shimmer (for page title)
+export const TitleShimmer = () => (
+  <Skeleton
+    variant="text"
+    width={200}
+    height={28}
+    sx={{ 
+      margin: '1rem 0',
+      ...shimmerStyles.shimmerBase 
+    }}
+  />
+);
+
 // Header Shimmer
 export const HeaderShimmer = () => (
-  <Box sx={{ flexGrow: 1, height: '4rem', ...shimmerStyles }}>
+  <Box sx={{ 
+    flexGrow: 1, 
+    height: '4rem',
+    '@keyframes shimmer': shimmerKeyframes,
+  }}>
     <AppBar position="static" sx={{ bgcolor: orange }}>
       <Toolbar>
         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -296,7 +314,11 @@ export const ProfileShimmer = () => (
 
 // Complete Layout Shimmer (matching AppLayout structure)
 export const LayoutLoader = () => (
-  <Box sx={{ height: '100%', ...shimmerStyles }}>
+  <Box sx={{ 
+    height: '100%',
+    '@keyframes shimmer': shimmerKeyframes,
+  }}>
+    <TitleShimmer />
     <HeaderShimmer />
     <Grid container sx={{ width: '100%', height: 'calc(100% - 4rem)' }}>
       {/* Chat List Column */}
@@ -340,6 +362,7 @@ export const LayoutLoader = () => (
 export {
   ChatItemShimmer,
   ChatListShimmer,
+  TitleShimmer,
   HeaderShimmer,
   MainChatShimmer,
   ProfileShimmer,
