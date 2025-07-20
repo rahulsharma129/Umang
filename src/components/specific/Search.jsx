@@ -2,11 +2,21 @@ import { Dialog , Stack , DialogTitle, TextField, InputAdornment, List , } from 
 import React from 'react'
 import { useInputValidation } from '6pp'
 import { Search as SearchIcon } from '@mui/icons-material'
+import UserItem from '../shared/UserItem.jsx'
+import { sampleUser } from '../../constants/sampleData.jsx'
 
-const Users = []
+const Users = [1,2,3];
 
 const Search = () => {
-  const search = useInputValidation("")
+  const search = useInputValidation("");
+
+  let isLoadingSendFriendRequest = false;
+
+  const [ users, setUsers ] = useState(sampleUser);
+
+  const addFriendsHandler = (id) => {
+    console.log(id);
+  }
   return (
     <Dialog open>
       <Stack padding={"2rem"} direction={"column"}  width={"25rem"}>
@@ -15,8 +25,8 @@ const Search = () => {
         label="" 
         value={search.value}
         onChange={search.changeHandler}
-        variant='outlined'
-        size='small'
+        variant="outlined"
+        size="small"
         InputProps={{
           startAdornment :(
           <InputAdornment position = "start">
@@ -28,17 +38,22 @@ const Search = () => {
 
         <List>
           {     
-       Users.map((User) => (
-    <ListItem>
-    <ListItemText/>
-    </ListItem>
+       Users.map((i) => (
+    // <ListItem>
+    // <ListItemText/>
+    // </ListItem>
+          <UserItem
+          user={i}
+          key={i._id}
+          handler={addFriendsHandler}
+          handlerIsLoading={isLoadingSendFriendRequest}
+          />
 ))
  }
         </List>
-
       </Stack>
     </Dialog>
   )
 }
 
-export default Search
+export default Search;
