@@ -1,5 +1,5 @@
 import { Dialog , Stack , DialogTitle, TextField, InputAdornment, List , } from '@mui/material'
-import React from 'react'
+import React ,{ useState} from 'react'
 import { useInputValidation } from '6pp'
 import { Search as SearchIcon } from '@mui/icons-material'
 import UserItem from '../shared/UserItem.jsx'
@@ -37,19 +37,14 @@ const Search = () => {
         />
 
         <List>
-          {     
-       Users.map((i) => (
-    // <ListItem>
-    // <ListItemText/>
-    // </ListItem>
+          {Users.map((i) => (
           <UserItem
           user={i}
           key={i._id}
           handler={addFriendsHandler}
           handlerIsLoading={isLoadingSendFriendRequest}
           />
-))
- }
+     ))}
         </List>
       </Stack>
     </Dialog>

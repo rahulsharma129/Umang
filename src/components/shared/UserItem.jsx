@@ -3,7 +3,7 @@ import { Avatar, IconButton, ListItem, Stack, Typography} from '@mui/material'
 import { Add as AddIcon } from '@mui/icons-material'
 
 const UserItem = ({ user, handler, handlerIsLoading}) => {
-    const { name, _id, avatar} = user;
+  const { name, _id, avatar} = user;
   return (
     <ListItem>
         <Stack direction={"row"} alignItems={"center"} spacing={"1rem"} width={"100%"}>

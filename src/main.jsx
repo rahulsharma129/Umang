@@ -5,8 +5,8 @@ import { CssBaseline } from "@mui/material";
 ReactDom.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
   <CssBaseline />
-  <div onContextMenu={(e) => e.preventDefault()}>
+  {/* <div onContextMenu={(e) => e.preventDefault()}> */}
     <App />
-    </div>
+    {/* </div> */}
   </React.StrictMode>
 );
